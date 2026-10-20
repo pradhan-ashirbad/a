@@ -7,10 +7,10 @@ import { operations } from "./operations";
 import { companyContact } from "./company";
 import { contentSources } from "./contentSources";
 import { CommunitySection } from "./components/CommunitySection";
+import { OperationsMenu } from "./components/OperationsMenu";
 import {
   ArrowUpRight,
   ArrowRight,
-  ChevronDown,
   Menu,
   X,
   Mountain,
@@ -30,6 +30,9 @@ import "@fontsource/dm-sans/latin-500.css";
 import "@fontsource/dm-sans/latin-600.css";
 import "./styles.css";
 import "./pages.css";
+import "@fontsource/instrument-serif/latin-400.css";
+import "@fontsource/instrument-serif/latin-400-italic.css";
+import "./theme.css";
 
 type Project = {
   title: string;
@@ -240,11 +243,13 @@ function App() {
         Skip to content
       </a>
       <div className="announcement">
-        <span className="status-dot" /> A new perspective on India’s mineral
-        potential{" "}
-        <span className="announcement-end">
-          Grounded in discovery. Guided by purpose.
+        <span className="announcement-location">
+          <span className="status-dot" /> INDIA’S MINERAL POTENTIAL. A WORLD OF
+          POSSIBILITY.
         </span>
+        <a href={contentSources.company} target="_blank" rel="noreferrer">
+          EXPLORING SINCE 1994 <ArrowUpRight size={11} />
+        </a>
       </div>
       <header className="header">
         <div className="header-inner">
@@ -255,29 +260,36 @@ function App() {
           >
             {[
               ["home", "Home"],
-              ["about", "About us"],
+              ["about", "Company"],
               ["projects", "Our operations"],
               ["processing", "Gold processing"],
               ["responsibility", "Responsibility"],
-            ].map(([id, label]) => (
-              <Link
-                className={
-                  (isHome && activeNav === id) ||
-                  (!isHome && id === "projects" && operation)
-                    ? "active"
-                    : ""
-                }
-                aria-current={
-                  isHome && activeNav === id ? "location" : undefined
-                }
-                key={id}
-                to={`/#${id}`}
-                onClick={() => setMenu(false)}
-              >
-                {label}
-                {id === "projects" && <ChevronDown size={12} />}
-              </Link>
-            ))}
+            ].map(([id, label]) =>
+              id === "projects" ? (
+                <OperationsMenu
+                  key={id}
+                  active={(!isHome && !!operation) || activeNav === "projects"}
+                  onNavigate={() => setMenu(false)}
+                />
+              ) : (
+                <Link
+                  className={
+                    (isHome && activeNav === id) ||
+                    (!isHome && id === "projects" && operation)
+                      ? "active"
+                      : ""
+                  }
+                  aria-current={
+                    isHome && activeNav === id ? "location" : undefined
+                  }
+                  key={id}
+                  to={`/#${id}`}
+                  onClick={() => setMenu(false)}
+                >
+                  {label}
+                </Link>
+              ),
+            )}
             <button
               className="button nav-contact"
               onClick={() => showContact()}
@@ -306,9 +318,17 @@ function App() {
           <NotFoundPage />
         ) : (
           <>
-            <section className="hero" id="home">
+            <section className="hero" id="home" data-slide={heroSlide}>
               <div
                 className={`hero-photo hero-slide-${heroSlide}`}
+                role="img"
+                aria-label={
+                  heroSlide === 0
+                    ? "Swarnagiri open-pit mine, from the company website"
+                    : heroSlide === 1
+                      ? "Aerial photograph of the Geomysore project site"
+                      : "Geomysore exploration drilling rig"
+                }
                 style={{
                   backgroundImage:
                     heroSlide === 1
@@ -323,74 +343,93 @@ function App() {
               <div className="hero-contours" />
               <div className="hero-content container">
                 <div className="eyebrow light">
-                  <span /> ROOTED IN INDIA. REACHING FURTHER.
+                  <span /> A LONG VIEW. A LASTING DIFFERENCE.
                 </div>
                 <h1>
                   {heroSlide === 0 ? (
                     <>
-                      There’s more
+                      A deeper
                       <br />
-                      beneath the <em>surface.</em>
+                      <em>perspective.</em>
                     </>
                   ) : heroSlide === 1 ? (
                     <>
-                      From potential
+                      Potential.
                       <br />
-                      to <em>possibility.</em>
+                      <em>Made possible.</em>
                     </>
                   ) : (
                     <>
-                      Every discovery
+                      Driven by
                       <br />
-                      starts with <em>curiosity.</em>
+                      <em>discovery.</em>
                     </>
                   )}
                 </h1>
                 <p>
-                  Exploration. Mining. Gold processing.
+                  Exploration, mining and gold processing.
                   <br />
-                  Turning potential into lasting value.
+                  One connected vision for India’s resources.
                 </p>
                 <div className="hero-actions">
                   <a className="button button-lime" href="#projects">
                     Explore our projects <ArrowUpRight size={19} />
                   </a>
                   <a className="text-link light-link" href="#about">
-                    Discover Geo Mysore <ArrowRight size={17} />
+                    Our story <ArrowUpRight size={17} />
                   </a>
                 </div>
               </div>
-              <div className="hero-bottom container">
-                <div className="hero-location">
-                  <MapPin size={15} />
-                  <span>
-                    {heroSlide === 0
-                      ? "SWARNAGIRI, ANDHRA PRADESH"
-                      : heroSlide === 1
-                        ? "GOLD PROCESSING & RECOVERY"
-                        : "GEOLOGICAL EXPLORATION"}
-                  </span>
-                  <span className="hero-divider" /> INDIA
-                </div>
-                <a className="scroll-link" href="#about">
-                  A deeper perspective <span>↓</span>
-                </a>
-              </div>
-              <div
-                className="hero-index"
-                role="group"
-                aria-label="Featured highlights"
+              <Link
+                className="hero-project-preview"
+                to={`/operations/${["mining", "gold-processing", "exploration"][heroSlide]}`}
               >
-                {["Mining", "Processing", "Exploration"].map((name, i) => (
-                  <button
-                    key={name}
-                    aria-label={`Show ${name.toLowerCase()} highlight`}
-                    aria-pressed={heroSlide === i}
-                    onClick={() => setHeroSlide(i)}
+                <span>
+                  <small>
+                    {heroSlide === 0
+                      ? "FEATURED PROJECT"
+                      : heroSlide === 1
+                        ? "FROM SOURCE TO VALUE"
+                        : "THE NEXT POSSIBILITY"}
+                  </small>
+                  <strong>
+                    {heroSlide === 0
+                      ? "Swarnagiri Gold Project"
+                      : heroSlide === 1
+                        ? "Gold processing"
+                        : "Geological exploration"}
+                  </strong>
+                </span>
+                <span className="round-arrow">
+                  <ArrowUpRight size={24} />
+                </span>
+              </Link>
+              <div className="hero-bottom">
+                <div className="container hero-bottom-inner">
+                  <div className="hero-location">
+                    <MapPin size={15} />
+                    <span>SWARNAGIRI, ANDHRA PRADESH</span>
+                    <span className="hero-divider" /> INDIA
+                  </div>
+                  <div
+                    className="hero-index"
+                    role="group"
+                    aria-label="Featured highlights"
                   >
-                    <span>0{i + 1}</span>
-                  </button>
-                ))}
+                    {["Mining", "Processing", "Exploration"].map((name, i) => (
+                      <button
+                        key={name}
+                        aria-label={`Show ${name.toLowerCase()} highlight`}
+                        aria-pressed={heroSlide === i}
+                        onClick={() => setHeroSlide(i)}
+                      >
+                        <span>0{i + 1}</span>
+                        <strong>{name}</strong>
+                        <ArrowUpRight size={15} />
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </section>
             <div className="principles-strip">
@@ -413,9 +452,9 @@ function App() {
               </div>
               <div className="about-grid">
                 <h2>
-                  Discovering resources.
+                  Grounded in India.
                   <br />
-                  <span>Building possibilities.</span>
+                  <span>Looking further.</span>
                 </h2>
                 <div className="about-copy">
                   <p>
@@ -457,33 +496,6 @@ function App() {
                   View source <ArrowUpRight size={11} />
                 </a>
               </p>
-              <div className="capabilities">
-                <div>
-                  <span className="capability-number">01 /</span>
-                  <h3>Explore with insight</h3>
-                  <p>
-                    Science-led exploration, grounded
-                    <br className="desktop-br" /> in geological understanding.
-                  </p>
-                </div>
-                <div>
-                  <span className="capability-number">02 /</span>
-                  <h3>Mine with purpose</h3>
-                  <p>
-                    Considered development, with
-                    <br className="desktop-br" /> people and the land in mind.
-                  </p>
-                </div>
-                <div>
-                  <span className="capability-number">03 /</span>
-                  <h3>Process for value</h3>
-                  <p>
-                    Bringing together technology
-                    <br className="desktop-br" /> and mineral processing
-                    expertise.
-                  </p>
-                </div>
-              </div>
             </section>
             <section className="projects-section section" id="projects">
               <div className="container">
@@ -592,9 +604,9 @@ function App() {
                     JOURNEY
                   </div>
                   <h2>
-                    From the earth.
+                    Ore. Expertise.
                     <br />
-                    <span>Through expertise.</span>
+                    <span>Opportunity.</span>
                   </h2>
                 </div>
                 <div>
@@ -912,9 +924,9 @@ function App() {
                     <span /> LET’S EXPLORE WHAT’S POSSIBLE
                   </div>
                   <h2>
-                    Great possibilities start
+                    A conversation today.
                     <br />
-                    with a conversation.
+                    <span>A possibility tomorrow.</span>
                   </h2>
                 </div>
                 <button
@@ -962,6 +974,14 @@ function App() {
             <br />
             <em>discovery.</em>
             <MoveUpRight size={34} />
+          </div>
+        </div>
+        <div className="container">
+          <div className="footer-wordmark" aria-hidden="true">
+            GEOMYSORE
+            <span>
+              <ArrowUpRight strokeWidth={0.85} />
+            </span>
           </div>
         </div>
         <div className="container footer-bottom">

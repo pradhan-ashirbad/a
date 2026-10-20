@@ -140,7 +140,7 @@ test("full operation links and unknown-page recovery work", async ({
   await expect(page).toHaveTitle("Page not found | Geo Mysore");
   await page.getByRole("link", { name: "Return home" }).click();
   await expect(
-    page.getByRole("heading", { name: /There’s more/ }),
+    page.getByRole("heading", { name: /A deeper perspective/ }),
   ).toBeVisible();
 });
 

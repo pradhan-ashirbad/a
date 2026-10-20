@@ -1,6 +1,6 @@
 # Geo Mysore — website redesign
 
-A responsive website concept for Geo Mysore's exploration, mining, and gold processing business. Built with React, TypeScript, Vite, Lucide icons, and locally hosted DM Sans fonts.
+A responsive website concept for Geo Mysore's exploration, mining, and gold processing business. Built with React, TypeScript, Vite, Lucide icons, and locally hosted DM Sans and Instrument Serif fonts.
 
 ## Develop
 
@@ -23,7 +23,9 @@ The browser tests use Chromium at `/usr/bin/chromium`, already available in this
 
 ## Features
 
-- Three manually selectable hero highlights
+- Split photographic hero with three manually selectable operation highlights
+- Gold and charcoal visual identity, editorial serif typography, and larger project cards
+- Keyboard-accessible operations navigation with desktop popover and mobile disclosure
 - Mining, processing, and exploration portfolio filters
 - Project quick-view dialogs and dedicated mining, gold processing, and exploration pages
 - Four-stage interactive journeys on each operation page, with related operation links
@@ -39,7 +41,7 @@ The browser tests use Chromium at `/usr/bin/chromium`, already available in this
 
 The redesigned website now uses information, the logo, photographs, and the processing flowsheet from the original geomysore.com website. See [content sources](docs/content-sources.md) for exact source pages, asset provenance, and discrepancies that need company confirmation. Published design and capacity figures are labelled and are not claims of current measured production. Current commissioning status and the conflicting pilot throughput values need confirmation.
 
-Homepage content is in `src/main.tsx`. Full operation content is in `src/operations.ts`, rendered by `src/components/OperationPage.tsx`. The inquiry flow is in `src/components/ContactInquiry.tsx`. Published company contacts and the user-requested demo person's name are centralised in `src/company.ts`. Visual styling is in `src/styles.css` and `src/pages.css`.
+Homepage content is in `src/main.tsx`. Full operation content is in `src/operations.ts`, rendered by `src/components/OperationPage.tsx`. The inquiry flow is in `src/components/ContactInquiry.tsx`. Published company contacts and the user-requested demo person's name are centralised in `src/company.ts`. Component styling is in `src/styles.css` and `src/pages.css`; the shared visual system, editorial typography, responsive layouts, and colour palette are in `src/theme.css`. The operations navigation disclosure is in `src/components/OperationsMenu.tsx`.
 
 The form prepares an email draft to the published reception email or downloads a copy. The visitor reviews and sends through their email app. The application does not send email automatically or store submissions on a server. Browser tests never send inquiries. Review company information, approved branding, and applicable privacy information before live publication. The live geomysore.com website has not been changed.
 
