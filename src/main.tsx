@@ -14,7 +14,6 @@ import {
   Menu,
   X,
   Mountain,
-  Compass,
   Leaf,
   Layers3,
   MapPin,
@@ -30,8 +29,7 @@ import "@fontsource/dm-sans/latin-500.css";
 import "@fontsource/dm-sans/latin-600.css";
 import "./styles.css";
 import "./pages.css";
-import "@fontsource/instrument-serif/latin-400.css";
-import "@fontsource/instrument-serif/latin-400-italic.css";
+import "@fontsource/barlow-condensed/latin-600.css";
 import "./theme.css";
 
 type Project = {
@@ -242,15 +240,6 @@ function App() {
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <div className="announcement">
-        <span className="announcement-location">
-          <span className="status-dot" /> INDIA’S MINERAL POTENTIAL. A WORLD OF
-          POSSIBILITY.
-        </span>
-        <a href={contentSources.company} target="_blank" rel="noreferrer">
-          EXPLORING SINCE 1994 <ArrowUpRight size={11} />
-        </a>
-      </div>
       <header className="header">
         <div className="header-inner">
           <Logo />
@@ -340,36 +329,39 @@ function App() {
                 }}
               />
               <div className="hero-shade" />
-              <div className="hero-contours" />
+              <div className="hero-edition" aria-hidden="true">
+                <span>INDIA · EST. 1994</span>
+                <span>EXPLORATION / MINING / PROCESSING</span>
+              </div>
               <div className="hero-content container">
                 <div className="eyebrow light">
-                  <span /> A LONG VIEW. A LASTING DIFFERENCE.
+                  <span /> FROM DISCOVERY TO GOLD
                 </div>
                 <h1>
                   {heroSlide === 0 ? (
                     <>
-                      A deeper
+                      Unlocking
                       <br />
-                      <em>perspective.</em>
+                      <em>India’s gold.</em>
                     </>
                   ) : heroSlide === 1 ? (
                     <>
-                      Potential.
+                      Beyond ore.
                       <br />
-                      <em>Made possible.</em>
+                      <em>Into value.</em>
                     </>
                   ) : (
                     <>
-                      Driven by
+                      The next
                       <br />
                       <em>discovery.</em>
                     </>
                   )}
                 </h1>
                 <p>
-                  Exploration, mining and gold processing.
+                  Exploration. Mining. Gold processing.
                   <br />
-                  One connected vision for India’s resources.
+                  Deep expertise. One connected ambition.
                 </p>
                 <div className="hero-actions">
                   <a className="button button-lime" href="#projects">
@@ -384,6 +376,9 @@ function App() {
                 className="hero-project-preview"
                 to={`/operations/${["mining", "gold-processing", "exploration"][heroSlide]}`}
               >
+                <span className="hero-preview-number" aria-hidden="true">
+                  0{heroSlide + 1}
+                </span>
                 <span>
                   <small>
                     {heroSlide === 0
@@ -424,7 +419,18 @@ function App() {
                         onClick={() => setHeroSlide(i)}
                       >
                         <span>0{i + 1}</span>
-                        <strong>{name}</strong>
+                        <strong>
+                          {name}
+                          <small>
+                            {
+                              [
+                                "Access the resource",
+                                "Realise its potential",
+                                "Understand the earth",
+                              ][i]
+                            }
+                          </small>
+                        </strong>
                         <ArrowUpRight size={15} />
                       </button>
                     ))}
@@ -432,29 +438,15 @@ function App() {
                 </div>
               </div>
             </section>
-            <div className="principles-strip">
-              <div className="container">
-                <span>EXPLORATION WITH INTENTION</span>
-                <div>
-                  <Compass size={17} /> From exploration to gold
-                </div>
-                <div>
-                  <Leaf size={17} /> Responsible development
-                </div>
-                <div>
-                  <Layers3 size={17} /> Long-term value
-                </div>
-              </div>
-            </div>
             <section className="about section container" id="about">
               <div className="section-kicker">
-                <span className="tiny-plus">+</span> THE GROUND WE STAND ON
+                <span className="tiny-plus">01 /</span> THE COMPANY
               </div>
               <div className="about-grid">
                 <h2>
-                  Grounded in India.
+                  Built on discovery.
                   <br />
-                  <span>Looking further.</span>
+                  <span>Driven by expertise.</span>
                 </h2>
                 <div className="about-copy">
                   <p>
@@ -500,13 +492,14 @@ function App() {
             <section className="projects-section section" id="projects">
               <div className="container">
                 <div className="section-kicker">
-                  <span className="tiny-plus">+</span> WHERE POTENTIAL TAKES
-                  SHAPE
+                  <span className="tiny-plus">02 /</span> OUR OPERATIONS
                 </div>
                 <div className="section-heading">
                   <div>
                     <h2>
-                      Our operations. <span>Connected by purpose.</span>
+                      One resource.
+                      <br />
+                      <span>Three disciplines.</span>
                     </h2>
                     <p>
                       From understanding the resource to unlocking its value.
@@ -551,10 +544,10 @@ function App() {
                             style={{ backgroundPosition: p.position }}
                           >
                             <span className="project-type">
-                              <span />
-                              {p.type === "Mining"
-                                ? "FEATURED PROJECT"
-                                : p.type.toUpperCase()}
+                              {p.type.toUpperCase()}
+                            </span>
+                            <span className="project-number" aria-hidden="true">
+                              {p.number}
                             </span>
                             <div className="project-image-lines" />
                             <span className="project-open">
@@ -600,13 +593,12 @@ function App() {
               <div className="processing-header">
                 <div>
                   <div className="section-kicker">
-                    <span className="tiny-plus">+</span> THE NEXT CHAPTER IN THE
-                    JOURNEY
+                    <span className="tiny-plus">03 /</span> GOLD PROCESSING
                   </div>
                   <h2>
-                    Ore. Expertise.
+                    Where ore becomes
                     <br />
-                    <span>Opportunity.</span>
+                    <span>opportunity.</span>
                   </h2>
                 </div>
                 <div>
@@ -705,8 +697,6 @@ function App() {
               <div className="container responsibility-grid">
                 <div className="responsibility-visual">
                   <div className="leaf-visual" />
-                  <div className="visual-cross cross-one">+</div>
-                  <div className="visual-cross cross-two">+</div>
                   <div className="image-caption">
                     <span className="status-dot" /> A LONG-TERM PERSPECTIVE
                   </div>
@@ -721,15 +711,12 @@ function App() {
                 </div>
                 <div className="responsibility-copy">
                   <div className="section-kicker">
-                    <span className="tiny-plus">+</span> RESPONSIBILITY AT OUR
-                    CORE
+                    <span className="tiny-plus">04 /</span> OUR RESPONSIBILITY
                   </div>
                   <h2>
-                    What we leave behind
+                    More than
                     <br />
-                    matters as much as
-                    <br />
-                    <span>what we discover.</span>
+                    <span>what we mine.</span>
                   </h2>
                   <p>
                     Progress means looking beyond the resource. It means
@@ -776,14 +763,13 @@ function App() {
             <section className="approach section" id="approach">
               <div className="container">
                 <div className="section-kicker">
-                  <span className="tiny-plus">+</span> FROM POSSIBILITY TO
-                  PERSPECTIVE
+                  <span className="tiny-plus">05 /</span> HOW WE WORK
                 </div>
                 <div className="section-heading">
                   <h2>
-                    A deeper understanding.
+                    Every stage.
                     <br />
-                    <span>At every step.</span>
+                    <span>Connected.</span>
                   </h2>
                   <p>
                     From discovery to processing, every
@@ -830,12 +816,12 @@ function App() {
             <section className="faq section container">
               <div>
                 <div className="section-kicker">
-                  <span className="tiny-plus">+</span> A LITTLE MORE PERSPECTIVE
+                  <span className="tiny-plus">07 /</span> USEFUL TO KNOW
                 </div>
                 <h2>
-                  Good questions.
+                  Your questions.
                   <br />
-                  <span>Clearer answers.</span>
+                  <span>Answered.</span>
                 </h2>
               </div>
               <div className="faq-list">
@@ -859,7 +845,7 @@ function App() {
             <section className="contact-section section container" id="contact">
               <div>
                 <div className="section-kicker">
-                  <span className="tiny-plus">+</span> LET’S MAKE A CONNECTION
+                  <span className="tiny-plus">08 /</span> GET IN TOUCH
                 </div>
                 <h2>
                   People behind
@@ -921,12 +907,12 @@ function App() {
               <div className="container">
                 <div>
                   <div className="eyebrow light">
-                    <span /> LET’S EXPLORE WHAT’S POSSIBLE
+                    <span /> THE NEXT CHAPTER STARTS HERE
                   </div>
                   <h2>
-                    A conversation today.
+                    Let’s build
                     <br />
-                    <span>A possibility tomorrow.</span>
+                    <span>what comes next.</span>
                   </h2>
                 </div>
                 <button

@@ -34,7 +34,7 @@ for (const [slug, title, tab] of [
     await expect(page).toHaveURL("/#projects");
     await expect(
       page.getByRole("heading", {
-        name: "Our operations. Connected by purpose.",
+        name: "One resource. Three disciplines.",
       }),
     ).toBeVisible();
   });
@@ -140,7 +140,7 @@ test("full operation links and unknown-page recovery work", async ({
   await expect(page).toHaveTitle("Page not found | Geo Mysore");
   await page.getByRole("link", { name: "Return home" }).click();
   await expect(
-    page.getByRole("heading", { name: /A deeper perspective/ }),
+    page.getByRole("heading", { name: /Unlocking India’s gold/ }),
   ).toBeVisible();
 });
 

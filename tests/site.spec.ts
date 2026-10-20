@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 test("operations filter and project inquiry flow", async ({ page }) => {
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: /A deeper perspective/ }),
+    page.getByRole("heading", { name: /Unlocking India’s gold/ }),
   ).toBeVisible();
   await expect(page.locator(".project-card")).toHaveCount(3);
   await page.getByRole("button", { name: "Processing", exact: true }).click();
@@ -53,7 +53,7 @@ test("processing tabs and FAQ respond to interaction", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Show processing highlight" }).click();
   await expect(
-    page.getByRole("heading", { name: "Potential. Made possible." }),
+    page.getByRole("heading", { name: "Beyond ore. Into value." }),
   ).toBeVisible();
   await page.getByRole("tab", { name: "02 Recover" }).click();
   await expect(page.getByRole("tabpanel")).toContainText(

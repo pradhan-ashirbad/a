@@ -25,13 +25,13 @@ export function CommunitySection() {
     <section className="community-section section" id="community">
       <div className="container">
         <div className="section-kicker">
-          <span className="tiny-plus">+</span> PROGRESS THAT REACHES FURTHER
+          <span className="tiny-plus">06 /</span> PEOPLE & PLACE
         </div>
         <div className="section-heading">
           <h2>
-            Part of the place.
+            Shared progress.
             <br />
-            <span>Part of the community.</span>
+            <span>Stronger communities.</span>
           </h2>
           <a
             className="text-link"
