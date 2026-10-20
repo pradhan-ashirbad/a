@@ -87,6 +87,23 @@ export function OperationPage({
           <h2>{operation.overviewHeading}</h2>
           <p>{operation.overview}</p>
         </div>
+        <div
+          className="operation-specifications"
+          aria-label="Published project specifications"
+        >
+          {operation.specifications.map((item) => (
+            <div key={item.label}>
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+        <p className="operation-source-note">
+          {operation.sourceNote}{" "}
+          <a href={operation.source} target="_blank" rel="noreferrer">
+            Company source <ArrowUpRight size={12} />
+          </a>
+        </p>
         <div className="operation-focus-grid">
           {operation.focus.map((item, index) => {
             const Icon = [Compass, Mountain, Layers3][index];
@@ -198,15 +215,49 @@ export function OperationPage({
             </div>
           </div>
           <p className="journey-note">
-            A general introduction to{" "}
+            Based on the company’s published{" "}
             {operation.slug === "gold-processing"
-              ? "gold processing"
+              ? "processing design"
               : operation.slug === "mining"
-                ? "mining development"
-                : "mineral exploration"}
-            . This overview does not specify the design or current status of a
-            particular facility.
+                ? "mining plan"
+                : "exploration information"}
+            . Confirm the latest operating details with the company.
           </p>
+          {operation.slug === "gold-processing" && (
+            <figure className="processing-flowsheet">
+              <div>
+                <span className="section-kicker">
+                  THE PUBLISHED MAIN-PLANT FLOWSHEET
+                </span>
+                <a
+                  className="text-link"
+                  href="/images/process-flow.png"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View full-size diagram <ArrowUpRight size={16} />
+                </a>
+              </div>
+              <a
+                href="/images/process-flow.png"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src="/images/process-flow.png"
+                  alt="Published Swarnagiri process diagram showing crushing, milling, gravity recovery, CIL tanks, elution, electrowinning, smelting, and tailings treatment"
+                  width="1024"
+                  height="722"
+                  loading="lazy"
+                />
+              </a>
+              <figcaption>
+                Process diagram from Geomysore’s processing page, labelled “NI
+                43-101-FS-Jonnagiri Gold Mine Project” in the original. It
+                describes the published design.
+              </figcaption>
+            </figure>
+          )}
         </div>
       </section>
       <section

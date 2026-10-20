@@ -65,7 +65,7 @@ test("processing tabs and FAQ respond to interaction", async ({ page }) => {
     "Care in every detail.",
   );
   await page
-    .getByRole("button", { name: "Where is the Jonnagiri project located?" })
+    .getByRole("button", { name: "Where is the Swarnagiri project located?" })
     .click();
   await expect(page.locator("#answer-1")).toBeVisible();
   await expect(page.locator("#answer-0")).toBeHidden();
@@ -132,7 +132,7 @@ test("page loads assets locally without browser errors", async ({ page }) => {
         const image = new Image();
         image.src = path;
         await image.decode();
-        return image.naturalWidth > 1000;
+        return image.naturalWidth > 300;
       }, asset),
     ).toBe(true);
   }

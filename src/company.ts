@@ -1,9 +1,10 @@
-// Replace these demo details with approved company information before launch.
+// Public company details: https://geomysore.com/contact.php (read 20 October 2026).
+// The contact person's name remains a clearly labelled demo name, as requested.
 export const companyContact = {
   name: "Priya Sharma",
-  role: "Business enquiries · Demo contact",
-  email: "hello@geomysore.example",
-  phone: "+91 00000 00000",
-  address: "Sample Business Centre, Mysuru, Karnataka, India",
-  isDemo: true,
+  role: "Demo contact person · Business enquiries",
+  email: "reception@geomysore.com",
+  address:
+    "#187/1E, Pagidirai Village, Tuggali Mandal, Kurnool District, Andhra Pradesh – 518390",
+  source: "https://geomysore.com/contact.php",
 };

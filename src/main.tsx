@@ -5,6 +5,8 @@ import { OperationPage, NotFoundPage } from "./components/OperationPage";
 import { ContactInquiry } from "./components/ContactInquiry";
 import { operations } from "./operations";
 import { companyContact } from "./company";
+import { contentSources } from "./contentSources";
+import { CommunitySection } from "./components/CommunitySection";
 import {
   ArrowUpRight,
   ArrowRight,
@@ -21,7 +23,6 @@ import {
   Globe2,
   MoveUpRight,
   Mail,
-  Phone,
   Building2,
 } from "lucide-react";
 import "@fontsource/dm-sans/latin-400.css";
@@ -41,11 +42,11 @@ type Project = {
 };
 const projects: Project[] = [
   {
-    title: "Jonnagiri Gold Project",
+    title: "Swarnagiri Gold Project",
     region: "Andhra Pradesh, India",
     type: "Mining",
     description:
-      "A closer look at the journey from geological discovery to responsible gold development. Explore the landscape, the geology, and the people at the heart of the project.",
+      "The Swarnagiri project in Kurnool District, Andhra Pradesh, connects a published 0.4 MTPA mining plan with integrated gold processing.",
     position: "center 65%",
     number: "01",
     slug: "mining",
@@ -55,17 +56,17 @@ const projects: Project[] = [
     region: "From ore to opportunity",
     type: "Processing",
     description:
-      "Processing connects the resource to its potential. Ore preparation, mineral recovery, and careful process control are all part of the journey from mined material to gold. Contact Geo Mysore for verified plant specifications and operational details.",
+      "Explore the published main-plant design: three-stage crushing, ball milling, gravity recovery, and carbon-in-leach treatment. The company also describes an established gravity-recovery pilot plant.",
     position: "center",
     number: "02",
     slug: "gold-processing",
   },
   {
     title: "Exploration portfolio",
-    region: "Southern India",
+    region: "Exploration across India",
     type: "Exploration",
     description:
-      "A systematic approach to understanding mineral potential. Field mapping, sampling, and geological interpretation guide each stage of exploration.",
+      "Established in 1994, Geomysore and its associates have explored more than 35,000 square kilometres across India. Field mapping, geophysical surveys, and drilling inform its work.",
     position: "20% 80%",
     number: "03",
     slug: "exploration",
@@ -77,29 +78,29 @@ const faqs = [
     "Geo Mysore works across gold exploration, mining, and processing in India. From understanding a mineral deposit to processing the ore, these activities connect each stage of the gold value chain.",
   ],
   [
-    "Where is the Jonnagiri project located?",
-    "The Jonnagiri Gold Project is located in Andhra Pradesh, India. Contact the company directly for current project details and operational updates.",
+    "Where is the Swarnagiri project located?",
+    "The Swarnagiri Gold Project is located near Swarnagiri, Erragudi, and Pagadirayi villages in Tuggali Mandal, Kurnool District, Andhra Pradesh. The company publishes a mining lease area of 597.82 hectares.",
   ],
   [
     "How can I explore a partnership?",
-    "Use “Get in touch” to prepare a partnership inquiry. This preview lets you download your inquiry; it does not send it to the company.",
+    "Use “Get in touch” to prepare a partnership inquiry, then open an email draft addressed to reception@geomysore.com or download a copy. You review and send the email through your own email app.",
   ],
 ];
 const responsibilityPrinciples = [
   {
     title: "Respect for the environment",
     icon: Leaf,
-    text: "Considering land, water, and the local environment is part of taking a longer view. Assessment, planning, and monitoring help make the trade-offs clearer.",
+    text: "Geomysore’s green initiatives describe water recycling and conservation, solar power, low-emission transport, waste segregation, and plantation around operating areas.",
   },
   {
     title: "Connection with communities",
     icon: Globe2,
-    text: "Listening to the people connected to a place helps build understanding. Clear communication and local perspectives belong in the conversation about development.",
+    text: "The company’s CSR work includes education support, health camps, drinking-water supply, village sanitation, and local skills training.",
   },
   {
     title: "A considered path forward",
     icon: Mountain,
-    text: "People, technical knowledge, and careful decisions shape the journey. A responsible approach considers both what a project can deliver and what comes after it.",
+    text: "The published sustainability approach includes repurposing waste rock into aggregates and manufactured sand, tailings-brick initiatives, reusing drilling roads, and land reclamation.",
   },
 ];
 function Logo({ light = false }: { light?: boolean }) {
@@ -109,13 +110,15 @@ function Logo({ light = false }: { light?: boolean }) {
       to="/#home"
       aria-label="Geo Mysore home"
     >
-      <svg viewBox="0 0 50 50" aria-hidden="true">
-        <path d="M4 31 24 6l22 27-9 11H16Z" />
-        <path d="m15 28 9-12 14 18H24l7 10" />
-        <path d="m7 35 12-3" />
-      </svg>
+      <img
+        className="official-mark"
+        src="/images/official-logo.png"
+        alt=""
+        width="314"
+        height="335"
+      />
       <span>
-        GEO MYSORE<small>EXPLORING POSSIBILITIES</small>
+        GEOMYSORE<small>SERVICES INDIA PVT LTD</small>
       </span>
     </Link>
   );
@@ -309,10 +312,11 @@ function App() {
                 style={{
                   backgroundImage:
                     heroSlide === 1
-                      ? "url('/images/processing-plant.webp')"
-                      : undefined,
-                  backgroundPosition: heroSlide === 2 ? "left top" : undefined,
-                  backgroundSize: heroSlide === 2 ? "auto 160%" : undefined,
+                      ? "url('/images/site-aerial.webp')"
+                      : heroSlide === 2
+                        ? "url('/images/exploration-rig.jpg')"
+                        : undefined,
+                  backgroundPosition: heroSlide === 2 ? "center" : undefined,
                 }}
               />
               <div className="hero-shade" />
@@ -361,7 +365,7 @@ function App() {
                   <MapPin size={15} />
                   <span>
                     {heroSlide === 0
-                      ? "JONNAGIRI, ANDHRA PRADESH"
+                      ? "SWARNAGIRI, ANDHRA PRADESH"
                       : heroSlide === 1
                         ? "GOLD PROCESSING & RECOVERY"
                         : "GEOLOGICAL EXPLORATION"}
@@ -415,21 +419,44 @@ function App() {
                 </h2>
                 <div className="about-copy">
                   <p>
-                    Great discoveries begin with a deeper understanding. At Geo
-                    Mysore, we connect geological insight, mining, and gold
-                    processing to unlock the potential of India’s mineral
-                    resources.
+                    Geomysore Services India Pvt Ltd has explored and developed
+                    India’s precious and base metal resources since 1994. The
+                    company and its associates report exploration across more
+                    than 35,000 square kilometres in eight Indian states.
                   </p>
                   <p className="muted">
-                    From the first field study to the processing plant, our
-                    focus is on the bigger picture: the land, the people, and
-                    the value we can create together.
+                    At Swarnagiri in Andhra Pradesh, that experience connects
+                    mineral exploration with open-pit mining, a gravity-recovery
+                    pilot plant, and an integrated gold processing design.
                   </p>
                   <a className="text-link" href="#approach">
                     Get to know our approach <ArrowUpRight size={19} />
                   </a>
                 </div>
               </div>
+              <div
+                className="company-facts"
+                aria-label="Published company facts"
+              >
+                {[
+                  ["1994", "Established"],
+                  ["35,000+ km²", "Explored by company & associates"],
+                  ["0.4 MTPA", "Published permitted mining capacity"],
+                  ["0.3 MTPA", "Published processing capacity"],
+                ].map(([value, label]) => (
+                  <div key={label}>
+                    <strong>{value}</strong>
+                    <span>{label}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="company-source-note">
+                Figures published on the company’s website. Capacity is not a
+                statement of current output.{" "}
+                <a href={contentSources.home} target="_blank" rel="noreferrer">
+                  View source <ArrowUpRight size={11} />
+                </a>
+              </p>
               <div className="capabilities">
                 <div>
                   <span className="capability-number">01 /</span>
@@ -572,9 +599,10 @@ function App() {
                 </div>
                 <div>
                   <p>
-                    Discovery is just the beginning. Our gold processing
-                    capability brings the next stage of the story to life —
-                    connecting what we mine with the value it holds.
+                    The published Swarnagiri processing design brings together
+                    three-stage crushing, ball milling, gravity recovery, and
+                    carbon-in-leach treatment. An established pilot plant uses
+                    gravity recovery to develop practical process understanding.
                   </p>
                   <Link className="text-link" to="/operations/gold-processing">
                     Discover gold processing <ArrowUpRight size={18} />
@@ -585,7 +613,7 @@ function App() {
                 <div
                   className="plant-photo"
                   role="img"
-                  aria-label="Illustrative gold ore processing facility with tanks, conveyors, and steel walkways"
+                  aria-label="Processing equipment photographed in Geomysore’s original plant gallery"
                 >
                   <span className="plant-caption">
                     GOLD PROCESSING <span>PRECISION. AT EVERY STAGE.</span>
@@ -641,16 +669,22 @@ function App() {
                     <p>
                       {
                         [
-                          "Ore preparation brings mined material into a form suitable for the recovery stages that follow. Understanding the characteristics of the feed is the first step toward effective processing.",
-                          "Mineral recovery brings engineering and geology together. The right process depends on the ore, with recovery performance and responsible resource use guiding the approach.",
-                          "Monitoring, sampling, and process control help teams understand performance and make informed operating decisions. People and technical expertise remain central at every stage.",
+                          "The published main-plant design uses three-stage crushing followed by a ball mill in closed circuit with a hydrocyclone. Its nominal design basis is 1,000 tonnes per day at 50 tonnes per hour milling.",
+                          "The main flowsheet describes gravity recovery and carbon-in-leach treatment, followed by carbon elution, electrowinning, and doré smelting. The pilot plant is described as a gravity-recovery circuit.",
+                          "Published testwork covers grind size, reagent consumption, leach time, slurry density, settling, and detoxification. The main design includes tailings detoxification before disposal.",
                         ][processStage]
                       }
                     </p>
                   </div>
                   <span className="process-footnote">
-                    A general introduction to gold processing. Plant details
-                    available on inquiry.
+                    Published plant design ·{" "}
+                    <a
+                      href={contentSources.processing}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Read the company’s processing page ↗
+                    </a>
                   </span>
                 </div>
               </div>
@@ -780,6 +814,7 @@ function App() {
                 </div>
               </div>
             </section>
+            <CommunitySection />
             <section className="faq section container">
               <div>
                 <div className="section-kicker">
@@ -838,19 +873,16 @@ function App() {
                 </div>
               </div>
               <div className="contact-details">
-                <span className="demo-label">DEMO CONTACT DETAILS</span>
+                <span className="demo-label">PUBLISHED COMPANY CONTACT</span>
                 <div>
                   <Mail size={20} />
                   <div>
                     <span>EMAIL</span>
-                    <p>{companyContact.email}</p>
-                  </div>
-                </div>
-                <div>
-                  <Phone size={20} />
-                  <div>
-                    <span>PHONE</span>
-                    <p>{companyContact.phone}</p>
+                    <p>
+                      <a href={`mailto:${companyContact.email}`}>
+                        {companyContact.email}
+                      </a>
+                    </p>
                   </div>
                 </div>
                 <div>
@@ -861,8 +893,15 @@ function App() {
                   </div>
                 </div>
                 <p className="contact-demo-note">
-                  Sample details for this preview. Replace with approved company
-                  contacts before launch.
+                  Email and address from the{" "}
+                  <a
+                    href={companyContact.source}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    original contact page ↗
+                  </a>
+                  . The named contact person is a demo placeholder.
                 </p>
               </div>
             </section>
@@ -929,7 +968,12 @@ function App() {
           <span>
             © {new Date().getFullYear()} Geo Mysore. Website redesign concept.
           </span>
-          <span>Project details and imagery are illustrative.</span>
+          <span>
+            Company information & photographs from{" "}
+            <a href={contentSources.home} target="_blank" rel="noreferrer">
+              geomysore.com ↗
+            </a>
+          </span>
           <Link to="/#home">Back to top ↑</Link>
         </div>
       </footer>
@@ -971,7 +1015,9 @@ function App() {
                     backgroundImage:
                       project.type === "Processing"
                         ? "url('/images/processing-plant.webp')"
-                        : undefined,
+                        : project.type === "Exploration"
+                          ? "url('/images/exploration-rig.jpg')"
+                          : undefined,
                   }}
                 />
                 <div className="modal-body">
@@ -1000,9 +1046,8 @@ function App() {
                     Explore the full story <ArrowUpRight size={18} />
                   </Link>
                   <p className="notice">
-                    This is a website concept. Project scope, current status,
-                    and technical information need confirmation from Geo Mysore
-                    before publication.
+                    Based on the company’s published website. Contact the team
+                    for the latest operating status and technical updates.
                   </p>
                   <button
                     className="button"

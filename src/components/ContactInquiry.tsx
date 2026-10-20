@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
+import { companyContact } from "../company";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -41,6 +42,8 @@ export function ContactInquiry({ subject }: { subject: string }) {
     setDraft((old) => ({ ...old, [field]: value }));
     setError("");
   };
+  const emailBody = `Name: ${draft.name}\nEmail: ${draft.email}\n${draft.company ? `Company: ${draft.company}\n` : ""}\n${draft.message}`;
+  const mailto = `mailto:${companyContact.email}?subject=${encodeURIComponent(`Website inquiry: ${draft.subject}`)}&body=${encodeURIComponent(emailBody)}`;
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const cleaned = Object.fromEntries(
@@ -60,7 +63,7 @@ export function ContactInquiry({ subject }: { subject: string }) {
     });
   };
   const download = () => {
-    const text = `GEO MYSORE — WEBSITE INQUIRY\n\nName: ${draft.name}\nEmail: ${draft.email}\n${draft.company ? `Company: ${draft.company}\n` : ""}Regarding: ${draft.subject}\n\n${draft.message}\n\nPrepared using the Geo Mysore website concept. This inquiry has not been submitted. Contact details on this site are demonstration placeholders.\n`;
+    const text = `GEOMYSORE — WEBSITE INQUIRY\n\nTo: ${companyContact.email}\nName: ${draft.name}\nEmail: ${draft.email}\n${draft.company ? `Company: ${draft.company}\n` : ""}Regarding: ${draft.subject}\n\n${draft.message}\n\nPrepared using the Geomysore website redesign. This inquiry has not been submitted. Send it through your preferred email application.\n`;
     const url = URL.createObjectURL(
       new Blob([text], { type: "text/plain;charset=utf-8" }),
     );
@@ -107,12 +110,12 @@ export function ContactInquiry({ subject }: { subject: string }) {
             </span>
             <h3>Your inquiry is ready, {draft.name.split(/\s+/)[0]}.</h3>
             <p>
-              Review your details, then download a copy to share through your
-              preferred contact channel.
+              Review your details, then open an email draft to{" "}
+              {companyContact.email} or download a copy.
             </p>
             <p className="notice">
-              This preview has no connected submission service. Your inquiry has
-              not been sent.
+              Your inquiry has not been sent. Your email app opens a draft for
+              you to review and send.
             </p>
           </div>
           <dl className="inquiry-review">
@@ -140,13 +143,16 @@ export function ContactInquiry({ subject }: { subject: string }) {
             </div>
           </dl>
           <div className="review-actions">
-            <button className="button" onClick={download}>
-              Download inquiry <Download size={17} />
-            </button>
+            <a className="button" href={mailto}>
+              Open email draft <ArrowUpRight size={17} />
+            </a>
             <button className="text-link edit-inquiry" onClick={editInquiry}>
               <Pencil size={14} /> Edit inquiry
             </button>
           </div>
+          <button className="download-inquiry" onClick={download}>
+            Download inquiry <Download size={15} />
+          </button>
           <button
             className="new-inquiry"
             onClick={() => {
@@ -246,8 +252,8 @@ export function ContactInquiry({ subject }: { subject: string }) {
             </p>
           )}
           <p className="form-notice">
-            Concept preview: prepare and download your inquiry. Nothing is sent
-            or stored on a server.
+            Prepare your inquiry, then review and send it through your email
+            app. Nothing is sent automatically.
           </p>
           <button type="submit" className="button">
             Prepare inquiry <ArrowUpRight size={18} />

@@ -1,3 +1,5 @@
+import { contentSources } from "./contentSources";
+
 export type Operation = {
   slug: string;
   category: string;
@@ -15,43 +17,47 @@ export type Operation = {
   journey: { title: string; heading: string; text: string; points: string[] }[];
   questions: string[];
   inquirySubject: string;
+  source: string;
+  specifications: { value: string; label: string }[];
+  sourceNote: string;
 };
 
 export const operations: Operation[] = [
   {
     slug: "mining",
     category: "MINING & DEVELOPMENT",
-    title: "Jonnagiri Gold Project",
+    title: "Swarnagiri Gold Project",
     headline: "Rooted in the resource.",
     accent: "Focused on the future.",
     intro:
-      "Mining connects geological understanding with work on the ground. Discover the considerations that shape the journey from a mineral resource to a thoughtfully developed operation.",
+      "The Swarnagiri project in Andhra Pradesh brings exploration, open-pit mining, and gold processing into one connected development. Discover the company’s published mining approach and project setting.",
     image: "/images/hero-mine.webp",
     imagePosition: "center 65%",
-    imageAlt: "Illustrative terraced gold mine in a wooded landscape",
-    caption: "A perspective on the mining landscape",
+    imageAlt:
+      "Swarnagiri open-pit mine, photographed on Geomysore’s original website",
+    caption: "Swarnagiri project · Company photograph",
     overviewHeading: "A resource is only the beginning.",
     overview:
-      "The Jonnagiri Gold Project in Andhra Pradesh brings a focus to Geo Mysore’s mining story. Understanding a deposit is one part of a larger picture that includes engineering, people, the surrounding environment, and the next stage of processing.",
+      "Geomysore’s published mining plan permits 0.4 million tonnes per annum at Swarnagiri. The East Block is planned as an open-pit operation using drilling and blasting. The project is located in Tuggali Mandal, Kurnool District, Andhra Pradesh, with a published mining lease area of 597.82 hectares.",
     focus: [
       {
         title: "Geological understanding",
-        text: "A clear view of the deposit informs the questions, studies, and decisions that follow.",
+        text: "The mineralised area is described in four blocks: East, West, South, and North. Detailed work has focused on the East and West Blocks.",
       },
       {
         title: "Considered development",
-        text: "Planning connects resource knowledge with technical studies and the practicalities of working on the ground.",
+        text: "The published plan describes 7.5-metre benches, 10-metre working widths, and a six-metre final bench width.",
       },
       {
         title: "A connected operation",
-        text: "Mining and processing work together. Understanding the material helps inform the next stage of the journey.",
+        text: "The company’s development approach connects open-pit mining with an integrated gold processing facility.",
       },
     ],
     journey: [
       {
         title: "Understand",
         heading: "Start with the geology.",
-        text: "Every deposit has its own character. Geological interpretation builds a picture of the resource and the uncertainties that need further study.",
+        text: "The Swarnagiri lease sits within the Eastern Dharwar Craton. Gold mineralisation is described mainly in granodiorite, with additional quartz-vein occurrences in metavolcanic rocks.",
         points: [
           "Deposit characteristics",
           "Geological interpretation",
@@ -61,7 +67,7 @@ export const operations: Operation[] = [
       {
         title: "Plan",
         heading: "Bring the whole picture together.",
-        text: "A development plan considers the resource alongside engineering requirements, land, people, and the wider environment.",
+        text: "The published East Block mine design uses pit optimisation and selective mining unit models. The mining page describes a permitted mining capacity of 0.4 MTPA, subject to periodic plan renewal.",
         points: [
           "Technical evaluation",
           "Environmental considerations",
@@ -71,7 +77,7 @@ export const operations: Operation[] = [
       {
         title: "Operate",
         heading: "Connect planning with practice.",
-        text: "A mining operation depends on coordinated people, equipment, and information. Safe working practices and operating discipline matter throughout.",
+        text: "The East Block plan describes open-pit mining with drilling and blasting, with the pit progressing from north to south. These are published design details, rather than confirmation of today’s operating status.",
         points: [
           "People and equipment",
           "Material handling",
@@ -81,7 +87,7 @@ export const operations: Operation[] = [
       {
         title: "Connect",
         heading: "Think beyond extraction.",
-        text: "The characteristics of mined material influence how it is handled and processed. Considering the next stage supports a more connected view of the operation.",
+        text: "The project connects mining with ore processing. The published plan also describes planting worked-out benches at the end of mine life, linking extraction with longer-term land management.",
         points: [
           "Ore characteristics",
           "Processing requirements",
@@ -95,6 +101,14 @@ export const operations: Operation[] = [
       "Business and technical inquiries",
     ],
     inquirySubject: "Project information",
+    source: contentSources.mining,
+    specifications: [
+      { value: "0.4 MTPA", label: "Published permitted mining capacity" },
+      { value: "597.82 ha", label: "Published mining lease area" },
+      { value: "7.5 m", label: "Planned bench height" },
+    ],
+    sourceNote:
+      "Details summarise the published mining plan and geology pages. Capacity is a permitted figure, not evidence of current production.",
   },
   {
     slug: "gold-processing",
@@ -103,34 +117,34 @@ export const operations: Operation[] = [
     headline: "The next stage.",
     accent: "A deeper kind of value.",
     intro:
-      "The story continues beyond the mine. Gold processing brings mineral knowledge and engineering together to prepare ore, recover its value, and understand performance at every stage.",
+      "The Swarnagiri processing design connects crushing and milling with gravity recovery and carbon-in-leach treatment. The published pilot-plant description documents gravity-recovery operations that informed process understanding.",
     image: "/images/processing-plant.webp",
     imagePosition: "center",
     imageAlt:
-      "Illustrative gold processing plant with steel tanks, conveyors, and yellow-railed walkways",
-    caption: "A perspective on gold processing infrastructure",
+      "Gold processing equipment and ball mill pictured in Geomysore’s original gallery",
+    caption: "Pilot processing equipment · Company photograph",
     overviewHeading: "Where potential meets process.",
     overview:
-      "Processing is a core part of Geo Mysore’s business. The right processing approach depends on the ore: its mineralogy, physical characteristics, and how the gold occurs within it. From preparation to recovery and control, each stage informs the next.",
+      "Geomysore describes Swarnagiri ore as free milling, with a significant gravity-recoverable component. Published metallurgical evaluations were carried out at SGS Johannesburg and the Indian Bureau of Mines in Bangalore. The main plant design specifies a nominal 1,000 tonnes per day and a milling rate of 50 tonnes per hour.",
     focus: [
       {
         title: "Ore preparation",
-        text: "Preparing mined material for subsequent recovery stages, with the characteristics of the feed in mind.",
+        text: "A three-stage crushing plant followed by a ball mill in closed circuit with a hydrocyclone, as described in the published design.",
       },
       {
         title: "Mineral recovery",
-        text: "Connecting knowledge of the ore with the engineering needed to recover the value it holds.",
+        text: "The published flowsheet combines gravity recovery with carbon-in-leach treatment, followed by elution, electrowinning, and doré smelting.",
       },
       {
         title: "Process control",
-        text: "Using sampling, monitoring, and technical interpretation to understand operating performance.",
+        text: "Testwork covers grind size, reagent use, leach time, thickening, settling, and tailings detoxification requirements.",
       },
     ],
     journey: [
       {
         title: "Characterise",
         heading: "First, understand the feed.",
-        text: "Mineralogy, grade, and physical characteristics influence the processing route. Testwork and feed characterisation help establish the questions a process must address.",
+        text: "The company describes free-milling ore with a substantial gravity-recoverable component. Its testwork programme examined comminution, gold deportment, gravity response, and leach performance.",
         points: [
           "Ore mineralogy",
           "Feed characteristics",
@@ -140,13 +154,13 @@ export const operations: Operation[] = [
       {
         title: "Prepare",
         heading: "Prepare for what comes next.",
-        text: "Ore preparation can include crushing, milling, and material handling. The purpose is to bring the material into a form suited to the selected recovery process.",
+        text: "The published main-plant design uses three stages of crushing and a ball mill in closed circuit with a hydrocyclone. The design basis is nominally 1,000 tonnes per day at a milling rate of 50 tonnes per hour.",
         points: ["Size reduction", "Material handling", "Feed preparation"],
       },
       {
         title: "Recover",
         heading: "Bring mineral potential into focus.",
-        text: "Gold recovery methods depend on how gold occurs in the ore. A suitable flowsheet considers mineral response, recovery performance, and the wider operating context.",
+        text: "The published recovery route includes gravity recovery, cyanide leaching with carbon-in-leach, carbon elution, electrowinning, and doré smelting. These describe the proposed main flowsheet; the pilot plant uses gravity recovery.",
         points: [
           "Ore-specific process selection",
           "Recovery performance",
@@ -156,7 +170,7 @@ export const operations: Operation[] = [
       {
         title: "Monitor",
         heading: "Keep learning from the process.",
-        text: "Sampling and process information help teams interpret performance. Water, energy, material balances, and operating conditions are important parts of that picture.",
+        text: "The published design includes tailings detoxification before disposal. Metallurgical evaluations also considered reagent consumption, slurry density, oxygen requirements, settling, and environmental performance.",
         points: [
           "Sampling and monitoring",
           "Resource use",
@@ -170,6 +184,14 @@ export const operations: Operation[] = [
       "Technical collaboration and partnerships",
     ],
     inquirySubject: "Gold processing",
+    source: contentSources.processing,
+    specifications: [
+      { value: "1,000 t/day", label: "Nominal main-plant design basis" },
+      { value: "50 t/hour", label: "Published design milling rate" },
+      { value: "Gravity + CIL", label: "Published main recovery route" },
+    ],
+    sourceNote:
+      "Figures describe the published plant design, not confirmed current throughput. The original page gives pilot capacity as 2 t/h in its narrative and 3 TPH in its table; confirm the correct pilot rating with the company.",
   },
   {
     slug: "exploration",
@@ -178,27 +200,27 @@ export const operations: Operation[] = [
     headline: "Good discoveries begin",
     accent: "with better questions.",
     intro:
-      "Look closely. Connect the evidence. Build understanding. Exploration is the process of turning observations about the landscape into a clearer picture of its mineral potential.",
-    image: "/images/hero-mine.webp",
-    imagePosition: "left 20%",
+      "Established in 1994, Geomysore has explored more than 35,000 square kilometres across India. Its work connects field geology, geochemistry, geophysics, and drilling to understand mineral potential.",
+    image: "/images/exploration-rig.jpg",
+    imagePosition: "center",
     imageAlt:
-      "Illustrative wooded southern Indian landscape surrounding a mineral exploration area",
-    caption: "A perspective on the exploration landscape",
+      "Exploration drilling rig from Geomysore’s published exploration page",
+    caption: "Exploration drilling · Company photograph",
     overviewHeading: "A considered search for possibility.",
     overview:
-      "Exploration connects fieldwork with analysis. Mapping, sampling, and geological interpretation inform where to look next and what needs to be understood in more detail. Each stage builds on the evidence gathered before it.",
+      "Geomysore and its associated companies describe exploration across Andhra Pradesh, Karnataka, Madhya Pradesh, Chhattisgarh, Rajasthan, Maharashtra, Arunachal Pradesh, and Nagaland. At Swarnagiri, published work includes trenching, soil sampling, induced-polarisation and magnetic surveys, and approximately 33,000 metres of close-spaced drilling.",
     focus: [
       {
         title: "Field observations",
-        text: "Reading the landscape and recording the geological evidence that provides a starting point.",
+        text: "Fieldwork at Swarnagiri includes trenching and soil sampling, supported by mapping of the mineralised blocks.",
       },
       {
         title: "Data and interpretation",
-        text: "Connecting observations and analytical information to build and test geological ideas.",
+        text: "Induced-polarisation and magnetic surveys complement drilling and geological interpretation.",
       },
       {
         title: "Evidence-led decisions",
-        text: "Using the quality of the evidence to guide further work and identify important uncertainties.",
+        text: "The company describes technical studies covering resource estimation, ore beneficiation, geotechnical work, and pit optimisation.",
       },
     ],
     journey: [
@@ -237,5 +259,13 @@ export const operations: Operation[] = [
       "Project and partnership discussions",
     ],
     inquirySubject: "Project information",
+    source: contentSources.exploration,
+    specifications: [
+      { value: "1994", label: "Company established" },
+      { value: "35,000+ km²", label: "Explored by company and associates" },
+      { value: "~33,000 m", label: "Published Swarnagiri drilling" },
+    ],
+    sourceNote:
+      "Company history is sourced from the About page; Swarnagiri fieldwork and drilling figures are published on the Exploration page. They are not an updated resource or reserve statement.",
   },
 ];

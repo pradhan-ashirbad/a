@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 
 for (const [slug, title, tab] of [
-  ["mining", "Jonnagiri Gold Project", "02 Plan"],
+  ["mining", "Swarnagiri Gold Project", "02 Plan"],
   ["gold-processing", "Gold Processing Plant", "02 Prepare"],
   ["exploration", "Exploration portfolio", "02 Investigate"],
 ]) {
@@ -54,8 +54,12 @@ test("inquiry review can be edited without losing fields", async ({ page }) => {
     "Example Company",
   );
   await expect(page.locator("#modal-title")).toBeFocused();
-  await expect.poll(() => page.locator(".modal").evaluate(element => element.scrollTop)).toBe(0);
-  await expect(page.getByRole("button", {name: "Close dialog"})).toBeVisible();
+  await expect
+    .poll(() => page.locator(".modal").evaluate((element) => element.scrollTop))
+    .toBe(0);
+  await expect(
+    page.getByRole("button", { name: "Close dialog" }),
+  ).toBeVisible();
   await page.getByRole("button", { name: "Edit inquiry" }).click();
   await expect(page.getByLabel("Your name")).toBeFocused();
   await expect(page.getByLabel("Your name")).toHaveValue("Priya Sharma");
@@ -111,9 +115,11 @@ test("mobile detail pages fit the viewport and demo contact is clearly labelled"
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/#contact");
   await expect(page.locator("#contact")).toContainText("Priya Sharma");
-  await expect(page.locator("#contact")).toContainText("DEMO CONTACT DETAILS");
   await expect(page.locator("#contact")).toContainText(
-    "hello@geomysore.example",
+    "PUBLISHED COMPANY CONTACT",
+  );
+  await expect(page.locator("#contact")).toContainText(
+    "reception@geomysore.com",
   );
   await page.getByRole("button", { name: "Open menu" }).click();
   await page.keyboard.press("Escape");
